@@ -51,9 +51,8 @@ MIDDLEWARE = [
 ]
 
 
-RAZOR_KEY_ID = "rzp_test_Y78VgqdG3kcmx0"
-RAZOR_KEY_SECRET = "ZgZNJPLkKsOBIBMJoFKD0r2w"
-
+RAZOR_KEY_ID = "rzp_test_GwAywrzy2L8muN"
+RAZOR_KEY_SECRET = "sLYBA2mxVOSL7STiGwehB2no"
 ROOT_URLCONF = 'dream.urls'
 import os
 TEMPLATES = [
