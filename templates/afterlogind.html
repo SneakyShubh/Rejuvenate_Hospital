@@ -6,9 +6,10 @@ Doctor Page
 
 {% block body %}
 
-<section class="vh-100" style="background-color: #9A616D;">
-    <div class="card" style="width: 40rem;;position:absolute;top:180px;left:676px" >
+<section class="vh-100" >
+    <div class="content-wrap aligncenter" >
         <div class="card-body">
+            <br><br>
           <h5 class="card-title" style="font-size:30px">Greeting Doctor {{sd.name}}!</h5>
           <h6 class="card-subtitle mb-2 text-muted"style="font-size:30px"> Welcome to your profile</h6>
           <p class="card-text"style="font-size:30px">Your concerned department : {{sd.department_name}}</p>
@@ -16,9 +17,9 @@ Doctor Page
           {% for app in sd2 %}
             <p class="card-text"style="font-size:30px">{{app.patient_name}}  {{app.apppointment_date}}</p>
             {% endfor %}
-          
+
         </div>
       </div>
-    
+
     </section>
 {% endblock body %}

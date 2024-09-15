@@ -24,7 +24,7 @@ Generated Bill
                                     <table width="100%" cellpadding="0" cellspacing="0">
                                         <tbody>
                                             <tr>
-                                                
+
                                                 <td class="content-block">
                                                     {% if mssg %}
                                                     <strong style="color:blue;text-align:center">Your Payment is
@@ -94,6 +94,19 @@ Generated Bill
                                     </table>
                                 </td>
                             </tr>
+                            <tr>
+        <td class="content-wrap aligncenter">
+            {% if send %}
+<button class="btn btn-primary" class="aligncenter content-block" id="download">Download as pdf</button>
+{% endif %}
+
+{% if sen %}
+                     <a href="/dreamapp/paymenthandler">
+<button class="btn btn-primary aligncenter" id="pay-btn">Pay Rs. {{trent}}</button>
+</a>
+
+                      </td>
+                    </tr>
                         </tbody>
                     </table>
 
@@ -112,16 +125,8 @@ Generated Bill
         </tr>
     </tbody>
 </table>
-{% if send %}
-<button class="btn btn-primary" style="position:absolute;left:856px;top:695px" id="download">Download as pdf</button>
-{% endif %}
 
-{% if sen %}
 
-<a href="/dreamapp/paymenthandler">
-    <button class="btn btn-primary" style="position:absolute;left:866px;top:675px" id="pay-btn">Pay Rs.
-        {{trent}}</button>
-</a>
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>

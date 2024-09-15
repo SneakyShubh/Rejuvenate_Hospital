@@ -38,7 +38,7 @@ def paymenthandler(request):
 	# only accept POST request.
 	if request.method == "POST":
 		try:
-		
+
 			# get the required parameters from post request.
 			payment_id = request.POST.get('razorpay_payment_id', '')
 			razorpay_order_id = request.POST.get('razorpay_order_id', '')
@@ -60,7 +60,7 @@ def paymenthandler(request):
 					razorpay_client.payment.capture(payment_id, amount)
 
 					# render success page on successful caputre of payment
-                    
+
 					return render(request, 'paymentsuccess.html')
 				except:
 
@@ -95,7 +95,7 @@ def feedback(request):
     return render (request,'submit.html')
 
 def emergency(request):
-    return render(request,'emergency.html')   
+    return render(request,'emergency.html')
 h1list = {}
 def appointment(request):
     if request.method == "POST":
@@ -109,11 +109,11 @@ def appointment(request):
                 break
             else:
                 doc_name+=doctor[i]
-        print(doc_name)   
+        print(doc_name)
         gender = request.POST.get('gender')
         date = request.POST.get('date')
         address = request.POST.get('address')
-        
+
         s = Patient(name=name,phone=phone,age=age,gender=gender,address=address)
         d = Appointment(doctor_name=str(doc_name),patient_name=name,apppointment_date=str(date))
         s.save()
@@ -143,18 +143,18 @@ def appointment(request):
         context['sen']=True
         for key, value in context.items():
             h1list[key] = value
-        return render (request,'receipt.html',context=context) 
+        return render (request,'receipt.html',context=context)
     weblist = Doctor.objects.all()
     weblist2 = Department.objects.all()
     dict1 = {'sd': weblist,'sd2':weblist2}
-    return render(request,'appointment.html',context=dict1)   
+    return render(request,'appointment.html',context=dict1)
 
 def patient(request):
     if request.method == "POST":
         name = request.POST.get('name')
         phone = request.POST.get('phone')
         patient_list = Patient.objects.all()
-        appointment_list = Appointment.objects.all()
+        appointment_list = Appointment.objects.all().order_by('-apppointment_date')
         dict = {1:1}
         listd =[]
         for j in appointment_list:
@@ -166,19 +166,20 @@ def patient(request):
             if y.name == name and y.phone == phone:
                 c=1
                 dict['sd'] = y
+
         if c:
             return render(request,'afterlogin.html',context=dict)
         else:
             return render (request,'patient_login.html',context={'send':True})
 
-    return render(request,'patient_login.html',context={'send':False})  
-    
+    return render(request,'patient_login.html',context={'send':False})
+
 def doctor(request):
     if request.method == "POST":
         name = request.POST.get('name')
         id = request.POST.get('id')
         doctor_list = Doctor.objects.all()
-        appointment_list = Appointment.objects.all()
+        appointment_list = Appointment.objects.all().order_by('-apppointment_date')
         list1 =[]
         for j in appointment_list:
             if j.doctor_name == name:
@@ -189,19 +190,19 @@ def doctor(request):
             if y.id == int(id) and y.name == name:
                 dict['sd'] =y
                 return render(request,'afterlogind.html',context=dict)
-        
+
         return render (request,'doctor_login.html',context={'send':True})
 
-    return render(request,'doctor_login.html',context={'send':False})   
-    
+    return render(request,'doctor_login.html',context={'send':False})
+
 def rooms(request):
     roomlist = Rooms.objects.all()
-    
+
     dict = {'sd': roomlist}
-    return render(request,'rooms.html',context = dict) 
+    return render(request,'rooms.html',context = dict)
 
 def contacts(request):
-    return render(request,'contacts.html') 
+    return render(request,'contacts.html')
 
 def admit(request):
     if request.method == "POST":
@@ -228,7 +229,7 @@ def discharge(request):
         y = Admit.objects.all()
         k = Discharge.objects.all()
         room = Rooms.objects.all()
-        
+
         context = {}
         list_admit=[]
         list_admit_id=[]

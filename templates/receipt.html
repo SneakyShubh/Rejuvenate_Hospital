@@ -40,21 +40,35 @@ Receipt
                                                           <td>Doctor Fees</td>
                                                           <td class="alignright">Rs. {{sd3.doctor_fees}} </td>
                                                       </tr>
-                                                      
-                                                      
+
+
                                                       <tr class="total">
                                                           <td class="alignright" width="80%">Total</td>
                                                           <td class="alignright">Rs. {{sd3.doctor_fees}}</td>
                                                       </tr>
                                                   </tbody></table>
                                               </td>
+
                                           </tr>
+                                          <tr>
+        <td class="content-wrap aligncenter">
+    {% if send %}
+<button class="btn btn-primary" class="aligncenter content-block" id="download">Download as pdf</button>
+{% endif %}
+
+{% if sen %}
+                     <a href="/dreamapp/paymenthandler">
+<button class="btn btn-primary aligncenter" id="pay-btn">Pay Rs. {{sd3.doctor_fees}}</button>
+</a>
+
+                      </td>
+    </tr>
                                       </tbody></table>
                                   </td>
                               </tr>
                               <tr>
                                   <td class="content-block">
-                                      
+
                                   </td>
                               </tr>
                               <tr>
@@ -66,7 +80,7 @@ Receipt
                       </td>
                   </tr>
               </tbody></table>
-                                     
+
               <div class="footer">
                   <table width="100%">
                       <tbody><tr>
@@ -78,40 +92,33 @@ Receipt
       <td></td>
   </tr>
 </tbody></table>
-{% if send %}
-<button class="btn btn-primary" style="position:absolute;left:876px;top:675px" id="download">Download as pdf</button>
-{% endif %}
 
-{% if sen %}
 
-<a href="/dreamapp/paymenthandler">
-<button class="btn btn-primary" style="position:absolute;left:896px;top:675px" id="pay-btn">Pay Rs. {{sd3.doctor_fees}}</button>
-</a>
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 	var options = {
-	
+
 	// Enter the Key ID generated from the Dashboard
 	key: "{{ razorpay_merchant_key }}",
-	
+
 	// Amount is in currency subunits.
 	// Default currency is INR. Hence,
 	// 50000 refers to 50000 paise
 	amount: "{{ razorpay_amount }}",
 	currency: "{{ currency }}",
-	
+
 	// Your/store name.
 	name: "Dj Razorpay",
-	
+
 	// Pass the `id` obtained in the response of Step 1
 	order_id: "{{ razorpay_order_id }}",
 	callback_url: "{{ callback_url }}",
 	};
-	
+
 	// initialise razorpay with the options.
 	var rzp1 = new Razorpay(options);
-	
+
 	// add event listener to the payment button.
 	document.getElementById("pay-btn").onclick = function (e) {
 	rzp1.open();
@@ -120,7 +127,7 @@ Receipt
 </script>
 
 {% endif %}
-               
+
 
 
 
